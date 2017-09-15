@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label for="name" class="label-control col-md-4">Name</label>
                         <div class="col-md-8">
-                            <input type="text" name="name" size="50" class="form-control" />
+                            <input type="text" name="name" size="50" class="form-control field-name-value" />
                         </div>
 
                     </div>
@@ -44,15 +44,18 @@
                     <div class="form-group">
                         <label for="lastname" class="label-control col-md-4">Lastname</label>
                         <div class="col-md-8">
-                            <input type="text" name="lastname" size="50" class="form-control" />
+                            <input type="text" name="lastname" size="50" class="form-control field-lastname-value" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email" class="label-control col-md-4">Email</label>
-                        <div class="col-md-8">
-                            <input id="email" type="email" name="email" size="50" class="form-control" />
+                        <div class="col-md-6">
+                            <input id="email" type="email" name="email" size="50" class="form-control icid_scan field-email-value" value="" />
                             <span id="email_status" class="help-block"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <a id="icid_scan_button" class="btn btn-default" href="javascript:void(0);" role="button">Scan</a>
                         </div>
                     </div>
 

@@ -46,4 +46,10 @@ class Customer_model extends MY_Model
         $this->db->where('id', $id);
         return $this->db->delete($this->tableName());
     }
+
+    public function getEmail($email)
+    {
+        $query = $this->db->get_where($this->tableName(), ['email' => $email]);
+        return $query->row();
+    }
 }

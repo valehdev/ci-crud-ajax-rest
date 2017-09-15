@@ -66,4 +66,10 @@ class Customer extends MY_Controller
         // @todo something
     }
 
+    public function getEmailJson()
+    {
+        $email = $this->input->post('email');
+        echo json_encode($this->model->getEmail($email));
+    }
+
 }

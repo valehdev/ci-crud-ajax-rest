@@ -114,7 +114,6 @@ $(document).ready(function () {
     // update user event end
 
 
-
     function getCustomers() {
         $.ajax({
             type: 'ajax',
@@ -142,5 +141,31 @@ $(document).ready(function () {
             }
         });
     }
+
+
+    // icid scan event start
+
+    $('#icid_scan_button').click(function () {
+
+        var card_scan_data = $('.icid_scan').val();
+
+            $.post(base_url + 'customer/getEmailJson', {'email' : card_scan_data}, function (response) {
+
+            var card = JSON.parse(response);
+
+            if (card != null) {
+                $('.field-name-value').val(card.name);
+                $('.field-lastname-value').val(card.lastname);
+                $('.field-email-value').val(card.email);
+            } else {
+                return false;
+            }
+
+
+        });
+
+    });
+
+    // icid scan event end
 
 });
