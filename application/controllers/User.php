@@ -99,4 +99,17 @@ class User extends MY_Controller
         }
     }
 
+    public function checkEmail()
+    {
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            echo 'Invalid Email';
+        } else {
+            if ($this->user_model->exist("email = '".$_POST['email']."'")) {
+                echo 'Email Already register';
+            } else {
+                echo 'Email available';
+            }
+        }
+    }
+
 }

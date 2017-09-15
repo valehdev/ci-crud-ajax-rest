@@ -122,15 +122,15 @@ $(document).ready(function () {
                 var html = '';
                 for (var i = 0; i < data.length; i++) {
                     html += '<tr>' +
-                        '<td>' + data[i].id + '</td>' +
-                        '<td>' + data[i].username + '</td>' +
-                        '<td>' + data[i].password + '</td>' +
-                        '<td>' + data[i].email + '</td>' +
-                        '<td>'
-                        + '<a id="edit_user" href="javascript:;" class="btn btn-info user_edit" data-id="' + data[i].id + '">Edit</a> '
-                        + '<a id="delete_user" href="javascript:;" class="btn btn-danger user_delete">Del</a>' +
-                        '</td>' +
-                        '</tr>';
+                                '<td>' + data[i].id + '</td>' +
+                                '<td>' + data[i].username + '</td>' +
+                                '<td>' + data[i].password + '</td>' +
+                                '<td>' + data[i].email + '</td>' +
+                                '<td>'
+                                + '<a id="edit_user" href="javascript:;" class="btn btn-info user_edit" data-id="' + data[i].id + '">Edit</a> '
+                                + '<a id="delete_user" href="javascript:;" class="btn btn-danger user_delete">Del</a>' +
+                                '</td>' +
+                            '</tr>';
                 }
                 $('#show_users').html(html);
             },
@@ -140,5 +140,26 @@ $(document).ready(function () {
             }
         });
     }
+
+    function checkEmail() {
+        $('#email').change(function () {
+            var email = $('#email').val();
+            if (email != '') {
+                $.ajax({
+                    url: base_url + 'user/checkEmail',
+                    method: 'POST',
+                    data: {email: email},
+                    success: function (data) {
+                        $('#email_status').html(data);
+                    },
+                    error: function () {
+
+                    }
+                });
+            }
+        });
+    }
+
+    checkEmail();
 
 });

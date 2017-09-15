@@ -32,28 +32,15 @@ class User_model extends MY_Model
         ];
     }
 
-    public function findAll()
-    {
-        $query = $this->db->get($this->tableName());
-        return $query->result();
-    }
-
-
-    public function findByPk($id)
-    {
-        $query = $this->db->get_where($this->tableName(), [$this->getPk() => $id]);
-        return $query->row();
-    }
-
     public function create()
     {
-        return $this->db->insert('user', $this->getDatas());
+        return $this->db->insert($this->tableName(), $this->getDatas());
     }
 
     public function update($id)
     {
         $this->db->where('id', $id);
-        return $this->db->update('user', $this->getDatas());
+        return $this->db->update($this->tableName(), $this->getDatas());
     }
 
 

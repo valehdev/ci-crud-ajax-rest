@@ -8,22 +8,22 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Username</th>
-                    <th>Password</th>
+                    <th>Name</th>
+                    <th>Lastname</th>
                     <th>Email</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody id="show_users">
+                <tbody id="show_customers">
 
                 </tbody>
             </table>
-            <button id="add_user" class="btn btn-primary">Add</button>
+            <button id="add_customer" class="btn btn-primary">Add</button>
         </div>
     </div>
 </div>
 
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+<div id="customerModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -31,20 +31,20 @@
                 <h4 class="modal-title">Modal title</h4>
             </div>
             <div class="modal-body">
-                <form id="userAddForm" method="post" class="form-horizontal" action="">
+                <form id="customerAddForm" method="post" class="form-horizontal" action="">
 
                     <div class="form-group">
-                        <label for="username" class="label-control col-md-4">Username</label>
+                        <label for="name" class="label-control col-md-4">Name</label>
                         <div class="col-md-8">
-                            <input type="text" name="username" size="50" class="form-control" />
+                            <input type="text" name="name" size="50" class="form-control" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="label-control col-md-4">Password</label>
+                        <label for="lastname" class="label-control col-md-4">Lastname</label>
                         <div class="col-md-8">
-                            <input type="password" name="password" size="50" class="form-control" />
+                            <input type="text" name="lastname" size="50" class="form-control" />
                         </div>
                     </div>
 
@@ -60,10 +60,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="user_save" type="button" class="btn btn-primary">Save changes</button>
+                <button id="customer_save" type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<script src="<?= base_url('templates/assets/js/user.js') ?>"></script>
+<script src="<?= base_url('templates/assets/js/customer.js') ?>"></script>
