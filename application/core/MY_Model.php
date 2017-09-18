@@ -37,6 +37,11 @@ class MY_Model extends CI_Model
         return (int) $query->row()->count;
     }
 
+    public function count()
+    {
+        return $this->db->count_all_results($this->tableName());
+    }
+
     public function findAll()
     {
         $query = $this->db->get($this->tableName());
@@ -48,5 +53,4 @@ class MY_Model extends CI_Model
         $query = $this->db->get_where($this->tableName(), [$this->getPk() => $id]);
         return $query->row();
     }
-//
 }

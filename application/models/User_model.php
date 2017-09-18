@@ -50,15 +50,11 @@ class User_model extends MY_Model
         return $this->db->delete($this->tableName());
     }
 
-    public function count()
-    {
-        return $this->db->count_all_results($this->tableName());
-    }
-
     public function all($limit = 10)
     {
         $offset = $this->uri->segment(3);
-        return $this->db->limit($limit, $offset)->get($this->tableName());
+        $query = $this->db->limit($limit, $offset)->get($this->tableName());
+        return $query->result();
     }
 
 }

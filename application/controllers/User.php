@@ -21,7 +21,7 @@ class User extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('user_model');
+        $this->load->model('user_model', 'model');
     }
 
     public function index()
@@ -33,7 +33,7 @@ class User extends MY_Controller
 
     public function index_json()
     {
-        echo json_encode($this->user_model->findAll());
+        echo json_encode($this->model->findAll());
     }
 
     public function view()
@@ -45,7 +45,7 @@ class User extends MY_Controller
 
     public function view_json()
     {
-        $result = $this->user_model->findByPk($this->getId());
+        $result = $this->model->findByPk($this->getId());
         echo json_encode($result);
     }
 
@@ -58,11 +58,11 @@ class User extends MY_Controller
 
     public function create_json()
     {
-        $this->user_model->rules();
+        $this->model->rules();
         $msg['success'] = false;
         $msg['type'] = 'create';
         if ($this->form_validation->run()) {
-            $this->user_model->create();
+            $this->model->create();
             $msg['success'] = true;
         }
         echo json_encode($msg);
@@ -77,13 +77,13 @@ class User extends MY_Controller
 
     public function update_json()
     {
-        $this->user_model->rules();
+        $this->model->rules();
 
         $msg['success'] = false;
         $msg['type'] = 'update';
 
         if ($this->form_validation->run()) {
-            $this->user_model->update($this->getId());
+            $this->model->update($this->getId());
             $msg['success'] = true;
         }
         echo json_encode($msg);
@@ -91,9 +91,9 @@ class User extends MY_Controller
 
     public function delete()
     {
-        if ($this->user_model->exist('id = ' . $this->getId())) {
-            $data['user'] = $this->user_model->findByPk($this->getId());
-            $this->user_model->delete($this->getId());
+        if ($this->model->exist('id = ' . $this->getId())) {
+            $data['user'] = $this->model->findByPk($this->getId());
+            $this->model->delete($this->getId());
 
             redirect(base_url() . 'user');
         } else {
@@ -104,7 +104,7 @@ class User extends MY_Controller
     public function delete_json()
     {
         $msg['success'] = false;
-        $result = $this->user_model->delete($this->getId());
+        $result = $this->model->delete($this->getId());
 
         if ($result) {
             $msg['success'] = true;
@@ -118,7 +118,7 @@ class User extends MY_Controller
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             echo 'Invalid Email';
         } else {
-            if ($this->user_model->exist("email = '" . $_POST['email'] . "'")) {
+            if ($this->model->exist("email = '" . $_POST['email'] . "'")) {
                 echo 'Email Already register';
             } else {
                 echo 'Email available';
@@ -128,11 +128,12 @@ class User extends MY_Controller
 
     public function paginationAjax()
     {
-        $query = $this->user_model->all($this->getPaginationLimit());
-        $totalRows = $this->user_model->count();
+        $response = $this->model->all($this->getPaginationLimit());
+        $totalRows = $this->model->count();
 
         $this->load->helper('pagination');
         $pageLinks = pagination($totalRows, $this->getPaginationLimit());
+
 
         if (!$this->input->is_ajax_request()) $this->load->view('layout/header');
         $this->load->view('user/ajax', compact('pageLinks'));

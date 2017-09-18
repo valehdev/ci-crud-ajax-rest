@@ -1,3 +1,5 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
 <div class="container">
     <div class="alert alert-success" style="display: none">
 
