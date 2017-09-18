@@ -99,12 +99,24 @@ class User extends MY_Controller
         }
     }
 
+    public function delete_json()
+    {
+        $msg['success'] = false;
+        $result = $this->user_model->delete($this->getId());
+
+        if ($result) {
+            $msg['success'] = true;
+        }
+
+        echo json_encode($msg);
+    }
+
     public function checkEmail()
     {
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             echo 'Invalid Email';
         } else {
-            if ($this->user_model->exist("email = '".$_POST['email']."'")) {
+            if ($this->user_model->exist("email = '" . $_POST['email'] . "'")) {
                 echo 'Email Already register';
             } else {
                 echo 'Email available';

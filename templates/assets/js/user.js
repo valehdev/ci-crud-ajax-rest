@@ -64,7 +64,7 @@ $(document).ready(function () {
                         } else {
                             var type = 'updated';
                         }
-                        $('.alert-success').html('User ' + type + ' successfully').fadeIn().delay(4000).fadeOut('slow');
+                        flashSuccess('User ' + type + ' successfully');
                         getUsers();
                     } else {
                         alert('Error!');
@@ -112,6 +112,42 @@ $(document).ready(function () {
         });
     });
 
+    // update user event end
+
+    // delete user event start
+
+    $('#show_users').on('click', '.user_delete', function () {
+        var id = $(this).data('id');
+        $('#deleteUserModal').modal('show');
+        $('#user_delete').unbind().click(function () {
+            $.ajax({
+                type: 'ajax',
+                url: base_url + 'user/delete_json/' + id,
+                data: {id: id},
+                async: false,
+                dataType: 'json',
+
+                success: function (response) {
+                    if (response.success) {
+                        $('#deleteUserModal').modal('hide');
+                        flashSuccess('User deleted successfully');
+                        getUsers();
+                    } else {
+                        alert('Something went wrong!');
+                    }
+                },
+
+                error: function () {
+                    alert('Error delete action not working');
+                }
+            });
+        });
+    });
+
+    // delete user event end\
+
+    // get all users from database
+
     function getUsers() {
         $.ajax({
             type: 'ajax',
@@ -122,15 +158,15 @@ $(document).ready(function () {
                 var html = '';
                 for (var i = 0; i < data.length; i++) {
                     html += '<tr>' +
-                                '<td>' + data[i].id + '</td>' +
-                                '<td>' + data[i].username + '</td>' +
-                                '<td>' + data[i].password + '</td>' +
-                                '<td>' + data[i].email + '</td>' +
-                                '<td>'
-                                + '<a id="edit_user" href="javascript:;" class="btn btn-info user_edit" data-id="' + data[i].id + '">Edit</a> '
-                                + '<a id="delete_user" href="javascript:;" class="btn btn-danger user_delete">Del</a>' +
-                                '</td>' +
-                            '</tr>';
+                        '<td>' + data[i].id + '</td>' +
+                        '<td>' + data[i].username + '</td>' +
+                        '<td>' + data[i].password + '</td>' +
+                        '<td>' + data[i].email + '</td>' +
+                        '<td>'
+                        + '<a id="edit_user" href="javascript:;" class="btn btn-info user_edit" data-id="' + data[i].id + '">Edit</a> '
+                        + '<a id="delete_user" href="javascript:;" class="btn btn-danger user_delete" data-id="' + data[i].id + '">Del</a>' +
+                        '</td>' +
+                        '</tr>';
                 }
                 $('#show_users').html(html);
             },
@@ -141,6 +177,13 @@ $(document).ready(function () {
         });
     }
 
+    // flash success utility
+
+    function flashSuccess(msg) {
+        $('.alert-success').html(msg).fadeIn().delay(4000).fadeOut('slow');
+    }
+
+    // email check from database and return user friendly messages.
     function checkEmail() {
         $('#email').change(function () {
             var email = $('#email').val();
@@ -160,6 +203,6 @@ $(document).ready(function () {
         });
     }
 
-    checkEmail();
+    checkEmail(); // call function
 
 });

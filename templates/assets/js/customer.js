@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#add_customer').click(function () {
         $('#customerModal').modal('show');
         $('#customerModal').find('.modal-title').text('Add New Customer');
-        $('#customerAddForm').attr('action', base_url + 'customer/createJson');
+        $('#customerAddForm').attr('action', base_url + 'customer/create_json');
     });
 
     // create event start respons json with ajax
@@ -86,12 +86,12 @@ $(document).ready(function () {
 
         $('#customerModal').modal('show');
         $('#customerModal').find('.modal-title').text('Update Customer');
-        $('#customerAddForm').attr('action', base_url + 'customer/updateJson/' + id);
+        $('#customerAddForm').attr('action', base_url + 'customer/update_json/' + id);
 
         $.ajax({
             type: 'ajax',
             method: 'post',
-            url: base_url + 'customer/viewJson/' + id,
+            url: base_url + 'customer/view_json/' + id,
             data: {id: id},
             async: false,
             dataType: 'json',
@@ -117,7 +117,7 @@ $(document).ready(function () {
     function getCustomers() {
         $.ajax({
             type: 'ajax',
-            url: base_url + 'customer/indexJson',
+            url: base_url + 'customer/index_json',
             async: false,
             dataType: 'json',
             success: function (data) {

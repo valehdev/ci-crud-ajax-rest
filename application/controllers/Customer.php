@@ -21,12 +21,12 @@ class Customer extends MY_Controller
         $this->load->view('layout/footer');
     }
 
-    public function indexJson()
+    public function index_json()
     {
         echo json_encode($this->model->findAll());
     }
 
-    public function createJson()
+    public function create_json()
     {
         $this->model->rules();
 
@@ -40,13 +40,13 @@ class Customer extends MY_Controller
         echo json_encode($msg);
     }
 
-    public function viewJson()
+    public function view_json()
     {
         echo json_encode($this->model->findByPk($this->getId()));
     }
 
 
-    public function updateJson()
+    public function update_json()
     {
         $this->model->rules();
 
@@ -61,7 +61,7 @@ class Customer extends MY_Controller
     }
 
 
-    public function deleteJson()
+    public function delete_json()
     {
         // @todo something
     }
