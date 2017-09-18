@@ -22,6 +22,7 @@
         </div>
     </div>
 
+    <?= $pageLinks ?>
 </div>
 
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog">

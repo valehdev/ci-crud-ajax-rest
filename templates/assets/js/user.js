@@ -205,4 +205,14 @@ $(document).ready(function () {
 
     checkEmail(); // call function
 
+    // pagination start
+
+    $('body').on('click', '.pagination a', function () {
+        var url = $(this).attr('href');
+        $('#show_users').load(url);
+        return false;
+    });
+
+    // pagination end 
+
 });

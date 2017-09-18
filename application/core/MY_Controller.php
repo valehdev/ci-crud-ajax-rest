@@ -10,8 +10,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller
 {
-    public function getId($segment = 3)
+    private $segment = 3;
+    private $limit = 10;
+
+    public function getId()
     {
-        return $this->uri->segment($segment);
+        return $this->uri->segment($this->segment);
     }
+
+    public function getPaginationLimit()
+    {
+        return $this->limit;
+    }
+
 }

@@ -16,6 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends MY_Controller
 {
+    private $limit = 10;
+
     public function __construct()
     {
         parent::__construct();
@@ -122,6 +124,19 @@ class User extends MY_Controller
                 echo 'Email available';
             }
         }
+    }
+
+    public function paginationAjax()
+    {
+        $query = $this->user_model->all($this->getPaginationLimit());
+        $totalRows = $this->user_model->count();
+
+        $this->load->helper('pagination');
+        $pageLinks = pagination($totalRows, $this->getPaginationLimit());
+
+        if (!$this->input->is_ajax_request()) $this->load->view('layout/header');
+        $this->load->view('user/ajax', compact('pageLinks'));
+        if (!$this->input->is_ajax_request()) $this->load->view('layout/footer');
     }
 
 }
