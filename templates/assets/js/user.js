@@ -66,6 +66,7 @@ $(document).ready(function () {
                         }
                         flashSuccess('User ' + type + ' successfully');
                         getUsers();
+
                     } else {
                         alert('Error!');
                     }

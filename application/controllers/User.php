@@ -24,16 +24,16 @@ class User extends MY_Controller
         $this->load->model('user_model', 'model');
     }
 
+    public function index_json()
+    {
+        echo json_encode($this->model->findAll());
+    }
+
     public function index()
     {
         $this->load->view('layout/header');
         $this->load->view('user/index');
         $this->load->view('layout/footer');
-    }
-
-    public function index_json()
-    {
-        echo json_encode($this->model->findAll());
     }
 
     public function view()
@@ -89,17 +89,6 @@ class User extends MY_Controller
         echo json_encode($msg);
     }
 
-    public function delete()
-    {
-        if ($this->model->exist('id = ' . $this->getId())) {
-            $data['user'] = $this->model->findByPk($this->getId());
-            $this->model->delete($this->getId());
-
-            redirect(base_url() . 'user');
-        } else {
-            show_404();
-        }
-    }
 
     public function delete_json()
     {
@@ -133,7 +122,6 @@ class User extends MY_Controller
 
         $this->load->helper('pagination');
         $pageLinks = pagination($totalRows, $this->getPaginationLimit());
-
 
         if (!$this->input->is_ajax_request()) $this->load->view('layout/header');
         $this->load->view('user/ajax', compact('pageLinks'));
