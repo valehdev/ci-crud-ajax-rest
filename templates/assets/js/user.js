@@ -1,3 +1,6 @@
+//$jForm = $.noConflict();
+
+
 $(document).ready(function () {
 
     getUsers(); // show all user function called
@@ -184,27 +187,6 @@ $(document).ready(function () {
         $('.alert-success').html(msg).fadeIn().delay(4000).fadeOut('slow');
     }
 
-    // email check from database and return user friendly messages.
-    function checkEmail() {
-        $('#email').change(function () {
-            var email = $('#email').val();
-            if (email != '') {
-                $.ajax({
-                    url: base_url + 'user/checkEmail',
-                    method: 'POST',
-                    data: {email: email},
-                    success: function (data) {
-                        $('#email_status').html(data);
-                    },
-                    error: function () {
-
-                    }
-                });
-            }
-        });
-    }
-
-    checkEmail(); // call function
 
     // pagination start
 
@@ -214,6 +196,30 @@ $(document).ready(function () {
         return false;
     });
 
-    // pagination end 
+    // pagination end
+
+    // jQuery validator engine init start
+
+
+    $.validate({
+
+        lang: 'en',
+
+        // security module init
+        modules : 'security',
+
+        onModulesLoaded : function() {
+            var optionalConfig = {
+                fontSize: '12px',
+                padding: '1px',
+                bad : 'Very bad',
+                weak : 'Weak',
+                good : 'Good',
+                strong : 'Strong'
+            };
+
+            $('input[name="password"]').displayPasswordStrength(optionalConfig);
+        }
+    });
 
 });

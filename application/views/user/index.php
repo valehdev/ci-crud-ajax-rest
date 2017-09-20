@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label for="username" class="label-control col-md-4">Username</label>
                         <div class="col-md-8">
-                            <input type="text" name="username" size="50" class="form-control" />
+                            <input type="text" name="username" size="50" class="form-control" data-validation="length" data-validation-length="3-255" />
                         </div>
 
                     </div>
@@ -45,14 +45,14 @@
                     <div class="form-group">
                         <label for="password" class="label-control col-md-4">Password</label>
                         <div class="col-md-8">
-                            <input type="password" name="password" size="50" class="form-control" />
+                            <input type="password" name="password" size="50" class="form-control" data-validation="length strength" data-validation-length="3-255" data-validation-strength="2" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email" class="label-control col-md-4">Email</label>
                         <div class="col-md-8">
-                            <input id="email" type="email" name="email" size="50" class="form-control" />
+                            <input id="email" type="email" name="email" size="50" class="form-control" data-validation="email" />
                             <span id="email_status" class="help-block"></span>
                         </div>
                     </div>
