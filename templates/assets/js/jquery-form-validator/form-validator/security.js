@@ -103,8 +103,9 @@
                             display: "inline-block",
                             fontSize: d.fontSize,
                             padding: d.padding,
+                            margin : '5px 0 0 0'
                         }, h = d.bad;
-                    0 === e.length && (e = a("<span></span>"), e.addClass("strength-meter").appendTo(c)), b ? e.show() : e.hide(), 1 === f ? h = d.weak : 2 === f ? (g.background = "lightyellow", g.borderColor = "yellow", g.color = "goldenrod", h = d.good) : f >= 3 && (g.background = "lightgreen", g.borderColor = "darkgreen", g.color = "darkgreen", h = d.strong), e.css(g).text(h)
+                    0 === e.length && (e = a("<span></span>"), e.addClass("strength-meter").appendTo(c)), b ? e.show() : e.hide(), 1 === f ? h = d.weak : 2 === f ? (g.background = "initial", g.margin, g.borderColor = "yellow", g.color = "goldenrod", h = d.good) : f >= 3 && (g.background = "initial",  g.margin, g.borderColor = "darkgreen", g.color = "darkgreen", h = d.strong), e.css(g).text(h)
                 })
             }
         });

@@ -327,7 +327,7 @@
                     text = config.weak;
                 }
                 else if (strength === 2) {
-                    css.background = 'lightyellow';
+                    css.background = 'white';
                     css.borderColor = 'yellow';
                     css.color = 'goldenrod';
                     text = config.good;
