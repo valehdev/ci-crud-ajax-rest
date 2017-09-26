@@ -14,11 +14,16 @@
                     <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody id="show_users">
-
-                </tbody>
+                <tbody id="show_users"></tbody>
             </table>
             <button id="add_user" class="btn btn-primary">Add</button>
+            <!-- <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="active"><a href="#" data-id="">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="javascript(void);" data-id="5">2 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </nav> -->
         </div>
     </div>
 

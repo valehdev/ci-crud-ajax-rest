@@ -24,16 +24,17 @@ class User extends MY_Controller
         $this->load->model('user_model', 'model');
     }
 
-    public function index_json()
-    {
-        echo json_encode($this->model->findAll());
-    }
 
     public function index()
     {
         $this->load->view('layout/header');
         $this->load->view('user/index');
         $this->load->view('layout/footer');
+    }
+
+    public function index_json()
+    {
+        echo json_encode($this->model->all());
     }
 
     public function view()

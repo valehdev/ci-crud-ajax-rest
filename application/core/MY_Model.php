@@ -11,24 +11,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Model extends CI_Model
 {
+    private $primary_key = 'id';
+
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function className()
-    {
-        return get_called_class();
-    }
-
-    public static function getProperties()
-    {
-        return get_class_vars(static::className());
-    }
-
     public function getPk()
     {
-        return 'id';
+        return $this->primary_key;
     }
 
     public function exist($params)

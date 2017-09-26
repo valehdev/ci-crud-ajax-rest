@@ -39,21 +39,24 @@ class User_model extends MY_Model
 
     public function update($id)
     {
-        $this->db->where('id', $id);
+        $this->db->where($this->getPk(), $id);
+
         return $this->db->update($this->tableName(), $this->getDatas());
     }
 
 
     public function delete($id)
     {
-        $this->db->where('id', $id);
+        $this->db->where($this->getPk(), $id);
+
         return $this->db->delete($this->tableName());
     }
 
     public function all($limit = 10)
     {
         $offset = $this->uri->segment(3);
-        $query = $this->db->limit($limit, $offset)->get($this->tableName());
+        $query = $this->db->limit($limit, $offset)->order_by($this->getPk(), 'DESC')->get($this->tableName());
+
         return $query->result();
     }
 

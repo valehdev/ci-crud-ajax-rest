@@ -153,15 +153,31 @@ $(document).ready(function () {
     // get all users from database
 
     function getUsers() {
+
+        // var id = $(this).data('id');
+        // console.log(id);
+
         $.ajax({
             type: 'ajax',
             url: base_url + 'user/index_json',
+            //url:  base_url +'user/index_json/' + id,
             async: false,
             dataType: 'json',
             success: function (data) {
-                var html = '';
-                for (var i = 0; i < data.length; i++) {
-                    html += '<tr>' +
+                getHtmlTable(data);
+            },
+
+            error: function () {
+                alert('Could not get any user');
+            }
+        });
+    }
+
+    function getHtmlTable(data) {
+        var html = '';
+
+        for (var i = 0; i < data.length; i++) {
+            html += '<tr>' +
                         '<td>' + data[i].id + '</td>' +
                         '<td>' + data[i].username + '</td>' +
                         '<td>' + data[i].password + '</td>' +
@@ -170,15 +186,9 @@ $(document).ready(function () {
                         + '<a id="edit_user" href="javascript:;" class="btn btn-info user_edit" data-id="' + data[i].id + '">Edit</a> '
                         + '<a id="delete_user" href="javascript:;" class="btn btn-danger user_delete" data-id="' + data[i].id + '">Del</a>' +
                         '</td>' +
-                        '</tr>';
-                }
-                $('#show_users').html(html);
-            },
-
-            error: function () {
-                alert('Could not get any user');
-            }
-        });
+                    '</tr>';
+        }
+        $('#show_users').html(html);
     }
 
     // flash success utility
